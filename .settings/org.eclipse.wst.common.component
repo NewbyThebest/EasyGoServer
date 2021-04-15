@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="EasyGoServer">
+        <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.me_tcat85/webapps/docs/appdev/sample/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.me_tcat85/webapps/examples/jsp/plugin/applet"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.me_tcat85/webapps/examples/WEB-INF/classes"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.me_tcat85/webapps/examples/WEB-INF/jsp/applet"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.me_tcat85/work/Catalina/localhost/EasyGo"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.me_tcat85/work/Catalina/localhost/ROOT"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.plugins/org.jboss.tools.common.projecttemplates/templates/jsf-1.1/JSFKickStartWithLibs/JavaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.plugins/org.jboss.tools.common.projecttemplates/templates/jsf-1.1/JSFKickStartWithoutLibs/JavaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.plugins/org.jboss.tools.common.projecttemplates/templates/jsf-1.2-facelets/FaceletsKickStartWithoutLibs/JavaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.plugins/org.jboss.tools.common.projecttemplates/templates/jsf-1.2-facelets/FaceletsKickStartWithRILibs/JavaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.plugins/org.jboss.tools.common.projecttemplates/templates/jsf-1.2/JSFKickStartWithoutLibs/JavaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.plugins/org.jboss.tools.common.projecttemplates/templates/jsf-2.0/JSFKickStartWithoutLibs/JavaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.plugins/org.jboss.tools.common.projecttemplates/templates/jsf-2.1/JSFKickStartWithoutLibs/JavaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.plugins/org.jboss.tools.common.projecttemplates/templates/jsf-2.2/JSFKickStartWithoutLibs/JavaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/.metadata/.plugins/org.jboss.tools.common.projecttemplates/templates/jsf-2.3/JSFKickStartWithoutLibs/JavaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/MyEclipse/EasyGo/src"/>
+        <property name="context-root" value="EasyGoServer"/>
+        <property name="java-output-path" value="/EasyGoServer/MyEclipse/.metadata/.me_tcat85/webapps/EasyGo/WEB-INF/classes"/>
+    </wb-module>
+</project-modules>

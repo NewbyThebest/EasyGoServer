@@ -8,11 +8,15 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 public class uoloadImg extends HttpServlet {
 
@@ -70,31 +74,32 @@ public class uoloadImg extends HttpServlet {
 		 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//返回数据给客户端
+
 		String result = "";
 		try {
 			String bitmapStr = request.getParameter("img");
-		
-			//获取当前时间
-			SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-			String name = df.format(new Date());
 	
-			
-			String dir = request.getRealPath("/image");  
-			
-			String path = dir + "/" + name + ".png";
-			
-			File file = new File(path);
+	
+			SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+			String name = df.format(new Date()) + ".png";
+			String dir = request.getSession().getServletContext().getRealPath("/img");
+		    
+			 Map<String,String> res = new HashMap<>();
+			File file = new File(dir);
 			if (!file.exists())  
 			{  
-			file.mkdir();  
+				file.mkdir();  
 			} 
+			
 	
+			String path = dir + "/" + name;
+			
+		
 			try {
 				// Base64解码
 				byte[] b = Base64.getMimeDecoder().decode(bitmapStr.replace("\r\n", ""));
 				for (int i = 0; i < b.length; ++i) {
-					if (b[i] < 0) {// 调整异常数据
+					if (b[i] < 0) {
 						b[i] += 256;
 					}
 				}
@@ -103,13 +108,15 @@ public class uoloadImg extends HttpServlet {
 				out.write(b);
 				out.flush();
 				out.close();
-				result = path;
-
+				res.put("imgUrl", name);
+				
 			} catch (Exception e) {
 				throw e;
 			}
 			 PrintWriter out = response.getWriter();
 		
+			 Gson gson = new Gson();
+			 result = gson.toJson(res);
 		     out.print(result);
 		     out.flush();
 		     out.close();

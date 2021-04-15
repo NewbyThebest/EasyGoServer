@@ -63,16 +63,19 @@ public class UpdateUserInfo extends HttpServlet {
 		 * @throws IOException if an error occurred
 		 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("utf-8");
+		  response.setContentType("application/json; charset=utf-8");
+			 response.setCharacterEncoding("UTF-8");
 		 String uid = request.getParameter("uid"); 
 	     String psw= request.getParameter("password");
 	     String phone = request.getParameter("phone"); 
 	     String address= request.getParameter("address");
 	     String url = request.getParameter("img");
 	     String name = request.getParameter("name");
+	     
+	     System.out.println(name);
 	     boolean success=false;
-	     response.setContentType("application/json; charset=utf-8");
-		 response.setCharacterEncoding("UTF-8");
+	   
 	     PrintWriter out = response.getWriter();
 	     success = DBUtil.updateUserInfo(uid,psw,
 	  		   name, address, phone,url);

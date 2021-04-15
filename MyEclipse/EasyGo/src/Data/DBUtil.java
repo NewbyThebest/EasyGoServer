@@ -7,15 +7,15 @@ import java.util.Map;
 import com.google.gson.Gson;
   
  public class DBUtil {
-   //其中mysql是数据库名称，在mysql57版本的数据库中已经预先新建完成；3306是mysql数据库的端口号。
+   //鍏朵腑mysql鏄暟鎹簱鍚嶇О锛屽湪mysql57鐗堟湰鐨勬暟鎹簱涓凡缁忛鍏堟柊寤哄畬鎴愶紱3306鏄痬ysql鏁版嵁搴撶殑绔彛鍙枫��
 	 private static final String url = "jdbc:mysql://localhost:3306/sys?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-   //com.mysql.jdbc.Driver是mysql-connector-java-5.1.40中的驱动包路径
+   //com.mysql.jdbc.Driver鏄痬ysql-connector-java-5.1.40涓殑椹卞姩鍖呰矾寰�
    private static String driverClass="com.mysql.cj.jdbc.Driver";
-   //mysql的账号和密码是在安装mysql中进行设置的，这里拿来用即可。
+   //mysql鐨勮处鍙峰拰瀵嗙爜鏄湪瀹夎mysql涓繘琛岃缃殑锛岃繖閲屾嬁鏉ョ敤鍗冲彲銆�
    private static String username="root";
    private static String password="903064675";
    private static Connection conn;
-   //装载驱动
+   //瑁呰浇椹卞姩
    static{
      try{
        Class.forName(driverClass);
@@ -24,7 +24,7 @@ import com.google.gson.Gson;
        e.printStackTrace();
      }
    }
-   //获取数据库连接
+   //鑾峰彇鏁版嵁搴撹繛鎺�
    public static Connection getConnection(){
      try{
        conn=DriverManager.getConnection(url,username,password);
@@ -86,6 +86,7 @@ import com.google.gson.Gson;
 	    	  result.put("title", rs.getString("name"));
 	    	  result.put("price", rs.getString("phone"));
 	    	  result.put("category", rs.getString("address"));
+	    	  result.put("imgUrl", rs.getString("imgUrl"));
 	       }
 	       Gson gson = new Gson();
 	       String info = gson.toJson(result);
@@ -98,7 +99,7 @@ import com.google.gson.Gson;
 	}
    }
    
-   //关闭数据库连接
+   //鍏抽棴鏁版嵁搴撹繛鎺�
    public static void close(){
      if(conn!=null){
        try{
