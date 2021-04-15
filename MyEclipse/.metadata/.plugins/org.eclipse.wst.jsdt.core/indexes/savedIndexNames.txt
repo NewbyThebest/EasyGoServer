@@ -1,0 +1,2 @@
+INDEX VERSION 1.4+/Users/uxin/Workspaces/MyEclipse/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+532785807.index
