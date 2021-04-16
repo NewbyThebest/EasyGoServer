@@ -68,11 +68,12 @@ public class CheckUserInfo extends HttpServlet {
 		 * @throws IOException if an error occurred
 		 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String uid = request.getParameter("uid"); 
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		response.setCharacterEncoding("UTF-8"); 
+		String uid = request.getParameter("uid"); 
 	     String password= request.getParameter("password");
 	     String type = request.getParameter("type");
-	     response.setContentType("application/json; charset=utf-8");
-		 response.setCharacterEncoding("UTF-8");
 	     PrintWriter out = response.getWriter();
 	     String info = DBUtil.userExist(uid, password, type);
 	     out.print(info);
