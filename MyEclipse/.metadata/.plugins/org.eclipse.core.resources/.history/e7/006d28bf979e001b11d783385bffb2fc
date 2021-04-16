@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>EasyGo</display-name>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetUserInfo</servlet-name>
+    <servlet-class>Data.GetUserInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CheckUserInfo</servlet-name>
+    <servlet-class>Data.CheckUserInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>addUserInfo</servlet-name>
+    <servlet-class>Data.addUserInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>uoloadImg</servlet-name>
+    <servlet-class>Data.uoloadImg</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateUserInfo</servlet-name>
+    <servlet-class>Data.UpdateUserInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>addGoodsInfo</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>Data.addGoodsInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>queryCategoryGoods</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>Data.queryCategoryGoods</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>updateGoodsInfo</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>Data.updateGoodsInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>querySellerGoods</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>Data.querySellerGoods</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>queryBuyerGoods</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>Data.queryBuyerGoods</servlet-class>
+  </servlet>
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>GetUserInfo</servlet-name>
+    <url-pattern>/Data/GetUserInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CheckUserInfo</servlet-name>
+    <url-pattern>/Data/CheckUserInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>addUserInfo</servlet-name>
+    <url-pattern>/Data/addUserInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>uoloadImg</servlet-name>
+    <url-pattern>/Data/uoloadImg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateUserInfo</servlet-name>
+    <url-pattern>/Data/UpdateUserInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>addGoodsInfo</servlet-name>
+    <url-pattern>/Data/addGoodsInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>queryCategoryGoods</servlet-name>
+    <url-pattern>/Data/queryCategoryGoods</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>updateGoodsInfo</servlet-name>
+    <url-pattern>/Data/updateGoodsInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>querySellerGoods</servlet-name>
+    <url-pattern>/Data/querySellerGoods</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>queryBuyerGoods</servlet-name>
+    <url-pattern>/Data/queryBuyerGoods</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
