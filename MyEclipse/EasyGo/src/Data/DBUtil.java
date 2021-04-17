@@ -76,6 +76,22 @@ import com.google.gson.Gson;
 		return true;
 	 }
    
+   public static Boolean deleteGoodsInfo(String uid){ 
+		try {
+	
+			   String sql = "delete from sys.goods_info where id="+uid;
+			   PreparedStatement stmt = getConnection().prepareStatement(sql);
+		
+	           stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}finally {		
+			close();
+		}
+		return true;
+	 }
+   
    public static Boolean updateGoodsInfo(String uid,String title,
 		   String price, String category, String buyerId,String url){ 
 	try {
@@ -155,7 +171,7 @@ import com.google.gson.Gson;
 			}else if(type == 2) {
 				sql="select * from sys.goods_info where buyerId='"+query+"'";
 			}else {
-				sql="select * from sys.goods_info where sellerId='"+query+"'";
+				sql="select * from sys.goods_info where sellerId='"+query+"' and buyerId <> ''";
 			}
 		       
 		       Gson gson = new Gson();
@@ -186,6 +202,44 @@ import com.google.gson.Gson;
 			close();
 		}
 	   }
+   
+   public static String queryGoods(String sellerId,String query,int type){ 
+		try {
+			String sql="select * from sys.goods_info where category='"+query+"' and sellerId='"+sellerId+"' and (buyerId is null or buyerId = '')";
+	
+			if(type == 0) {
+				sql="select * from sys.goods_info where sellerId='"+sellerId+"' and (buyerId is null or buyerId = '')";
+			}
+		       
+		       Gson gson = new Gson();
+		       PreparedStatement stmt = getConnection().prepareStatement(sql);
+		       ResultSet rs = stmt.executeQuery();
+		       List<Map<String,String>> list = new ArrayList<>();
+		      
+		       while(rs.next())
+		       {
+		    	 Map<String,String> result = new HashMap<>();
+		    	  result.put("uid", rs.getString("id"));
+		    	  result.put("seller", rs.getString("seller"));
+		    	  result.put("title", rs.getString("title"));
+		    	  result.put("price", rs.getString("price"));
+		    	  result.put("category", rs.getString("category"));
+		    	  result.put("imgUrl", rs.getString("imgUrl"));
+		    	  result.put("sellerId", rs.getString("sellerId"));
+		    	  result.put("buyerId", rs.getString("buyerId"));
+		    	  list.add(result);
+		       }
+		       
+		       String info = gson.toJson(list);
+		       return info;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "";
+		}finally {		
+			close();
+		}
+	   }
+  
    
    //鍏抽棴鏁版嵁搴撹繛鎺�
    public static void close(){

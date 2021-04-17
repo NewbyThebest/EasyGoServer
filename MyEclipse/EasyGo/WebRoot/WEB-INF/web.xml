@@ -67,6 +67,27 @@
     <description>This is the description of my J2EE component</description>
     <servlet-class>Data.queryBannerGoods</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>deleteGoods</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>Data.deleteGoods</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>querySellerCategoryGoods</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>Data.querySellerCategoryGoods</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>querySellerBannerGoods</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>Data.querySellerBannerGoods</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -116,6 +137,18 @@
   <servlet-mapping>
     <servlet-name>queryBannerGoods</servlet-name>
     <url-pattern>/Data/queryBannerGoods</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>deleteGoods</servlet-name>
+    <url-pattern>/Data/deleteGoods</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>querySellerCategoryGoods</servlet-name>
+    <url-pattern>/Data/querySellerCategoryGoods</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>querySellerBannerGoods</servlet-name>
+    <url-pattern>/Data/querySellerBannerGoods</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
