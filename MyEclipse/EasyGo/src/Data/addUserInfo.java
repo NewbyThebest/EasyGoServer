@@ -69,10 +69,11 @@ public class addUserInfo extends HttpServlet {
 		String uid = request.getParameter("uid"); 
 	     String password= request.getParameter("password");
 	     String type = request.getParameter("type");
+	     String phone = request.getParameter("phone");
 	     boolean success=false;
 	 
 	     PrintWriter out = response.getWriter();
-	     success = DBUtil.addUserInfo(uid, password, type);
+	     success = DBUtil.addUserInfo(uid, password, type,phone);
 	     out.print(success);
 	     out.flush();
 	     out.close();

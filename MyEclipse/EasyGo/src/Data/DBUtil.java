@@ -37,13 +37,14 @@ import com.google.gson.Gson;
      return conn;
    }                 
    
-   public static Boolean addUserInfo(String uid,String psw,String type){ 
+   public static Boolean addUserInfo(String uid,String psw,String type,String phone){ 
 	try {
-		   String sql = "insert into sys.user_info (uid,password,type) values(?,?,?)";
+		   String sql = "insert into sys.user_info (uid,password,type,phone) values(?,?,?,?)";
 		   PreparedStatement stmt = getConnection().prepareStatement(sql);
 		   stmt.setString(1, uid);
            stmt.setString(2, psw);
            stmt.setString(3, type);
+           stmt.setString(4, phone);
            stmt.executeUpdate();
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -128,11 +129,10 @@ import com.google.gson.Gson;
 	       while(rs.next())
 	       {
 	    	  result.put("uid", rs.getString("uid"));
-	    	  result.put("seller", rs.getString("password"));
-	    	  result.put("title", rs.getString("name"));
-	    	  result.put("price", rs.getString("phone"));
-	    	  result.put("category", rs.getString("address"));
-	    	  result.put("imgUrl", rs.getString("imgUrl"));
+	    	  result.put("password", rs.getString("password"));
+	    	  result.put("name", rs.getString("name"));
+	    	  result.put("phone", rs.getString("phone"));
+	    	  result.put("url", rs.getString("url"));
 	       }
 	       Gson gson = new Gson();
 	       String info = gson.toJson(result);
