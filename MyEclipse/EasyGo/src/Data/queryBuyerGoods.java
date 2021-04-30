@@ -69,7 +69,7 @@ public class queryBuyerGoods extends HttpServlet {
 		response.setCharacterEncoding("UTF-8"); 
 		String buyerId = request.getParameter("buyerId"); 
 	     PrintWriter out = response.getWriter();
-	     String info = DBUtil.queryGoods(buyerId,2);
+	     String info = DBUtil.queryGoods("",2);
 	     out.print(info);
 	     out.flush();
 	     out.close();

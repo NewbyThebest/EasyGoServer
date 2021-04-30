@@ -70,13 +70,16 @@ public class addGoodsInfo extends HttpServlet {
 		String title = request.getParameter("title"); 
 	     String price= request.getParameter("price");
 	     String seller = request.getParameter("seller");
-	     String category = request.getParameter("category"); 
+	     String detail = request.getParameter("detail"); 
 	     String sellerId= request.getParameter("sellerId");
+	     String count= request.getParameter("count");
+	     String isGroup= request.getParameter("isGroup");
+	     String time= request.getParameter("time");
 	     String img = request.getParameter("img");
 	     boolean success=false;
 	 
 	     PrintWriter out = response.getWriter();
-	     success = DBUtil.addGoodsInfo(title, price, seller,category,sellerId,img);
+	     success = DBUtil.addGoodsInfo(title, price, seller,detail,sellerId,img,count,isGroup,time);
 	     out.print(success);
 	     out.flush();
 	     out.close();

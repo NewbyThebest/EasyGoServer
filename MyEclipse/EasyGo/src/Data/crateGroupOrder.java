@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UpdateUserInfo extends HttpServlet {
+public class crateGroupOrder extends HttpServlet {
 
 	/**
 		 * Constructor of the object.
 		 */
-	public UpdateUserInfo() {
+	public crateGroupOrder() {
 		super();
 	}
 
@@ -63,19 +63,16 @@ public class UpdateUserInfo extends HttpServlet {
 		 * @throws IOException if an error occurred
 		 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		request.setCharacterEncoding("utf-8");
-		  response.setContentType("application/json; charset=utf-8");
-			 response.setCharacterEncoding("UTF-8");
-		 String uid = request.getParameter("uid"); 
-		 String psw = request.getParameter("psw"); 
-	     String name = request.getParameter("name");
-	     String url = request.getParameter("url");
-	     
-	     System.out.println(name);
+		response.setContentType("application/json; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");  
+		String uid = request.getParameter("uid"); 
+	     String goodsId= request.getParameter("goodsId");
 	     boolean success=false;
-	   
+	 
 	     PrintWriter out = response.getWriter();
-	     success = DBUtil.updateUserInfo(uid,name,psw,url);
+	     success = DBUtil.addGroup(uid, goodsId);
 	     out.print(success);
 	     out.flush();
 	     out.close();

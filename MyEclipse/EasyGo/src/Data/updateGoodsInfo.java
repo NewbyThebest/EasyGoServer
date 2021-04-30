@@ -70,15 +70,15 @@ public class updateGoodsInfo extends HttpServlet {
 		 String uid = request.getParameter("uid"); 
 	     String title= request.getParameter("title");
 	     String price = request.getParameter("price"); 
-	     String category= request.getParameter("category");
-	     String buyerId = request.getParameter("buyerId");
+	     String detail= request.getParameter("detail");
+	     String count = request.getParameter("count");
 	     String url = request.getParameter("img");
 	     
 	     boolean success=false;
 	   
 	     PrintWriter out = response.getWriter();
 	     success = DBUtil.updateGoodsInfo(uid,title,
-	    		 price, category, buyerId,url);
+	    		 price, detail, count,url);
 	     out.print(success);
 	     out.flush();
 	     out.close();

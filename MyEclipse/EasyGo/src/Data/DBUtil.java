@@ -55,18 +55,68 @@ import com.google.gson.Gson;
 	return true;
  }
    
-   public static Boolean addGoodsInfo(String title,String price,String seller,
-		   String category,String sellerId,String url){ 
+   public static Boolean addGroup(String uid,String goodsId){ 
 		try {
-			   String sql = "insert into sys.goods_info (title,price,seller,category,sellerId,imgUrl,buyerId) values(?,?,?,?,?,?,?)";
+			 
+	           
+	           Statement stmt1 = getConnection().createStatement();
+	      
+		       String sql1="select groupId from sys.group where goodsId='"+goodsId+"'";
+		       ResultSet rs=stmt1.executeQuery(sql1);
+		       List<Map<String,String>> list = new ArrayList<>();
+		       while(rs.next())
+		       {
+		    	     Map<String,String> result = new HashMap<>();
+		    	 	  result.put("id", rs.getString("id"));
+			    	  result.put("goodsId", rs.getString("goodsId"));
+			    	  result.put("groupId", rs.getString("groupId"));
+		    	  list.add(result);
+		       }
+		       if(list.size() == 2 || list.size() == 0) {
+		    	   String sql2 = "delete from sys.group where goodsId="+goodsId;
+				   PreparedStatement stmt2 = getConnection().prepareStatement(sql2);
+		           stmt2.executeUpdate(sql2);
+		           
+		           long id=System.nanoTime();
+		    	   String sql3 = "insert into sys.group (uid,goodsId,groupId) values(?,?,?)";
+				   PreparedStatement stmt3 = getConnection().prepareStatement(sql3);
+				   stmt3.setString(1, uid);
+		           stmt3.setString(2, goodsId);
+		           stmt3.setString(3, String.valueOf(id));
+		           stmt3.executeUpdate();
+		           return false;
+		       }else if(list.size() == 1) {
+		    	   String sql = "insert into sys.group (uid,goodsId,groupId) values(?,?,?)";
+				   PreparedStatement stmt = getConnection().prepareStatement(sql);
+				   stmt.setString(1, uid);
+		           stmt.setString(2, goodsId);
+		           stmt.setString(3, list.get(0).get("groupId"));
+		           stmt.executeUpdate();
+		           return true;
+		       }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}finally {		
+			close();
+		}
+		return false;
+	 }
+ 
+   public static Boolean addGoodsInfo(String title,String price,String seller,
+		   String detail,String sellerId,String url,String count,String isGroup,String time){ 
+		try {
+			   String sql = "insert into sys.goods_info (title,price,seller,detail,sellerId,imgUrl,count,isGroup,time) values(?,?,?,?,?,?,?,?,?)";
 			   PreparedStatement stmt = getConnection().prepareStatement(sql);
 			   stmt.setString(1, title);
 	           stmt.setString(2, price);
 	           stmt.setString(3, seller);
-			   stmt.setString(4, category);
+			   stmt.setString(4, detail);
 	           stmt.setString(5, sellerId);
 	           stmt.setString(6, url);
-	           stmt.setString(7, "");
+	           stmt.setString(7, count);
+	           stmt.setString(8, isGroup);
+	           stmt.setString(9, time);
 	           stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -94,14 +144,14 @@ import com.google.gson.Gson;
 	 }
    
    public static Boolean updateGoodsInfo(String uid,String title,
-		   String price, String category, String buyerId,String url){ 
+		   String price, String detail, String count,String url){ 
 	try {
-		   String sql = "update sys.goods_info set title=?,price=?,category=?,buyerId=?,imgUrl=? where id=?";
+		   String sql = "update sys.goods_info set title=?,price=?,detail=?,count=?,imgUrl=? where id=?";
 		   PreparedStatement stmt = getConnection().prepareStatement(sql);
 		   stmt.setString(1, title);
            stmt.setString(2, price);
-           stmt.setString(3, category);
-           stmt.setString(4, buyerId);
+           stmt.setString(3, detail);
+           stmt.setString(4, count);
            stmt.setString(5, url);
            stmt.setInt(6, Integer.parseInt(uid));
            stmt.executeUpdate();
@@ -115,17 +165,14 @@ import com.google.gson.Gson;
  }
    
    
-   public static Boolean updateUserInfo(String uid,String psw,
-		   String name, String address, String phone,String url){ 
+   public static Boolean updateUserInfo(String uid,String name,String psw,String url){ 
 	try {
-		   String sql = "update sys.user_info set name=?,address=?,phone=?,imgUrl=?,password=? where uid=?";
+		   String sql = "update sys.user_info set name=?,password=?,url=? where uid=?";
 		   PreparedStatement stmt = getConnection().prepareStatement(sql);
 		   stmt.setString(1, name);
-           stmt.setString(2, address);
-           stmt.setString(3, phone);
-           stmt.setString(4, url);
-           stmt.setString(5, psw);
-           stmt.setInt(6, Integer.parseInt(uid));
+		   stmt.setString(2, psw);
+		   stmt.setString(3, url);
+           stmt.setInt(4, Integer.parseInt(uid));
            stmt.executeUpdate();
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -165,13 +212,13 @@ import com.google.gson.Gson;
 		try {
 			String sql="select * from sys.goods_info where buyerId is null or buyerId = ''";
 			if(type == 0) {
-				sql="select * from sys.goods_info where buyerId is null or buyerId = ''";
+				sql="select * from sys.goods_info";
 			}else if(type == 1) {
 				sql="select * from sys.goods_info where category='"+query+"' and (buyerId is null or buyerId = '')";
 			}else if(type == 2) {
-				sql="select * from sys.goods_info where buyerId='"+query+"'";
+				sql="select * from sys.goods_info";
 			}else {
-				sql="select * from sys.goods_info where sellerId='"+query+"' and buyerId <> ''";
+				sql="select * from sys.goods_info where sellerId='"+query+"'";
 			}
 		       
 		       Gson gson = new Gson();
@@ -186,10 +233,12 @@ import com.google.gson.Gson;
 		    	  result.put("seller", rs.getString("seller"));
 		    	  result.put("title", rs.getString("title"));
 		    	  result.put("price", rs.getString("price"));
-		    	  result.put("category", rs.getString("category"));
+		    	  result.put("detail", rs.getString("detail"));
 		    	  result.put("imgUrl", rs.getString("imgUrl"));
 		    	  result.put("sellerId", rs.getString("sellerId"));
-		    	  result.put("buyerId", rs.getString("buyerId"));
+		    	  result.put("count", rs.getString("count"));
+		    	  result.put("isGroup", rs.getString("isGroup"));
+		    	  result.put("time", rs.getString("time"));
 		    	  list.add(result);
 		       }
 		       
@@ -208,7 +257,7 @@ import com.google.gson.Gson;
 			String sql="select * from sys.goods_info where category='"+query+"' and sellerId='"+sellerId+"' and (buyerId is null or buyerId = '')";
 	
 			if(type == 0) {
-				sql="select * from sys.goods_info where sellerId='"+sellerId+"' and (buyerId is null or buyerId = '')";
+				sql="select * from sys.goods_info where sellerId='"+sellerId+"'";
 			}
 		       
 		       Gson gson = new Gson();
@@ -223,10 +272,12 @@ import com.google.gson.Gson;
 		    	  result.put("seller", rs.getString("seller"));
 		    	  result.put("title", rs.getString("title"));
 		    	  result.put("price", rs.getString("price"));
-		    	  result.put("category", rs.getString("category"));
+		    	  result.put("detail", rs.getString("detail"));
 		    	  result.put("imgUrl", rs.getString("imgUrl"));
 		    	  result.put("sellerId", rs.getString("sellerId"));
-		    	  result.put("buyerId", rs.getString("buyerId"));
+		    	  result.put("count", rs.getString("count"));
+		    	  result.put("isGroup", rs.getString("isGroup"));
+		    	  result.put("time", rs.getString("time"));
 		    	  list.add(result);
 		       }
 		       

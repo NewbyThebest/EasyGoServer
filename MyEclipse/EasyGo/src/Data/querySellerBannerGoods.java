@@ -68,7 +68,8 @@ public class querySellerBannerGoods extends HttpServlet {
 		response.setContentType("application/json; charset=utf-8");
 		response.setCharacterEncoding("UTF-8"); 
 	     PrintWriter out = response.getWriter();
-	     String info = DBUtil.queryGoods("",0);
+	 	String uid = request.getParameter("uid"); 
+	     String info = DBUtil.queryGoods(uid,"",0);
 	     out.print(info);
 	     out.flush();
 	     out.close();

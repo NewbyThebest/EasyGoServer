@@ -85,6 +85,13 @@
     <description>This is the description of my J2EE component</description>
     <servlet-class>Data.querySellerBannerGoods</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>crateGroupOrder</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>Data.crateGroupOrder</servlet-class>
+  </servlet>
+
 
 
 
@@ -149,6 +156,10 @@
   <servlet-mapping>
     <servlet-name>querySellerBannerGoods</servlet-name>
     <url-pattern>/Data/querySellerBannerGoods</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>crateGroupOrder</servlet-name>
+    <url-pattern>/Data/crateGroupOrder</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
